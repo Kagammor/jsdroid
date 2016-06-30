@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const config = require('config');
 
 module.exports = function(args, target, from, client) {
