@@ -5,9 +5,11 @@ const docker = new Docker();
 
 const {Writable} = require('stream');
 
-module.exports = function(code, target, from) {
+module.exports = function(args, target, from) {
     const ws = Writable();
     const results = [];
+
+    const code = args.join(' ');
 
     return new Promise((resolve, reject) => {
         ws._write = function(chunk, enc, next) {
