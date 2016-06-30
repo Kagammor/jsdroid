@@ -17,9 +17,9 @@ module.exports = function(code, target, from) {
         };
 
         ws.on('finish', () => {
-            const result = JSON.parse(results[0]);
-
             try {
+                const result = JSON.parse(results[0]);
+
                 if(typeof result.value === 'undefined' && result.console.length) {
                     resolve(`${from}: (console) ${result.console.join(', ')}`);
                 } else if(result.console.length) {
@@ -28,12 +28,16 @@ module.exports = function(code, target, from) {
                     resolve(`${from}: (${result.type}) ${result.value || result.error}`);
                 }
             } catch(error) {
+                console.log(results[0]);
+
                 reject(`Evaluation error: ${error.message}`);
             }
         });
 
         const options = {
             Env: [`CODE=${code}`, `ME=${from}`],
+            NetworkDisabled: true,
+            Memory: 134217728
         }
 
         docker.run('jsdroid-node', [], ws, options, options, (error, data, container) => {

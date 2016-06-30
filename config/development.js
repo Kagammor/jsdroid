@@ -5,10 +5,12 @@ const config = {};
 config.prefix = '~';
 config.suffix = '>';
 
+config.owner = 'ThePendulum';
+
 config.irc = {
-    nick: 'jsdroid',
-    userName: 'jsdroid',
-    realName: 'jsdroid',
+    nick: 'jsdev',
+    userName: 'jsdev',
+    realName: 'jsdev',
     server: 'irc.freenode.net',
     port: 6697,
     secure: true,

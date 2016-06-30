@@ -27,10 +27,18 @@ client.addListener('message', (from, to, message) => {
     }
 
     if(router[method]) {
-        router[method](args, target, from).then(result => {
-            client.say(target, sanitize(result));
+        router[method](args, target, from, client).then(result => {
+            if(result) {
+                client.say(target, sanitize(result));
+            }
         }).catch(error => {
-            client.say(target, sanitize(error));
+            if(error) {
+                client.say(target, sanitize(error));
+            }
         });
     }
+});
+
+client.addListener('error', error => {
+    console.log(error);
 });
