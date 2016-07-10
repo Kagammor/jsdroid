@@ -22,7 +22,7 @@ module.exports = function(args, target, from) {
             try {
                 const result = JSON.parse(results[0]);
 
-                if(typeof result.value === 'undefined' && result.console.length) {
+                if(result.type === 'undefined' && result.console.length) {
                     resolve(`${from}: (console) ${result.console.join(', ')}`);
                 } else if(result.console.length) {
                     resolve(`${from}: (${result.type}) ${result.value || result.error} | (console) ${result.console.join(', ')}`);
