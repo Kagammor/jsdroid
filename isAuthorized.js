@@ -3,9 +3,11 @@
 const config = require('config');
 
 module.exports = function(user, channel, client) {
-    if(user === config.owner) {
+    if(user === config.admin.owner) {
         return Promise.resolve();
-    } else {
+    }
+
+    if(config.admin.opAuthorized) {
         return new Promise((resolve,reject) => {
             client.whois(user, info => {
                 const isInChannel = info.channels.find(inChannel => {
@@ -13,6 +15,7 @@ module.exports = function(user, channel, client) {
                 });
 
                 if(isInChannel) {
+                    // Check for OP flag
                     const isOp = isInChannel.slice(0, 1) === '@';
 
                     if(isOp) {
@@ -24,4 +27,6 @@ module.exports = function(user, channel, client) {
             });
         });
     }
+
+    return Promise.reject();
 };

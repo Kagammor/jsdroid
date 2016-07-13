@@ -5,7 +5,10 @@ const config = {};
 config.prefix = '~';
 config.suffix = '>';
 
-config.owner = 'ThePendulum';
+config.admin = {
+    owner: 'ThePendulum',
+    opAuthorized: true
+};
 
 config.irc = {
     nick: 'jsdev',
