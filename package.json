@@ -1,6 +1,6 @@
 {
   "name": "jsdroid",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Code evaluation bot",
   "main": "app.js",
   "scripts": {
