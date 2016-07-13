@@ -1,5 +1,7 @@
 'use strict';
 
+const note = require('note-log');
+
 const config = require('config');
 const request = require('request-promise');
 
@@ -16,7 +18,7 @@ module.exports = function(str) {
         }).then(res => {
             return `${newStr.slice(0, config.truncate - config.ellipsis.length - res.length)} ${config.ellipsis} ${res}`;
         }).catch(error => {
-            console.log(error);
+            note(error);
 
             return 'Sanitation error';
         });

@@ -31,6 +31,7 @@
     "dockerode": "^2.2.10",
     "irc": "^0.5.0",
     "jsdroid-node": "^1.1.1",
+    "note-log": "^2.1.10",
     "request-promise": "^3.0.0"
   }
 }

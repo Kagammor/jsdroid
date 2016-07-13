@@ -1,5 +1,7 @@
 'use strict';
 
+const note = require('note-log');
+
 const Docker = require('dockerode');
 const docker = new Docker();
 
@@ -31,7 +33,7 @@ module.exports = function(args, target, from) {
 
             container.remove((error, data) => {
                 if(error) {
-                    console.log(error);
+                    note(error);
                 }
             });
         });
@@ -48,8 +50,6 @@ module.exports = function(args, target, from) {
                     resolve(`${from}: (${result.type}) ${result.value || result.error}`);
                 }
             } catch(error) {
-                console.log(results[0]);
-
                 reject(`Evaluation error: ${error.message}`);
             }
         });

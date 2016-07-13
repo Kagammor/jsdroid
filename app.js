@@ -1,6 +1,7 @@
 'use strict';
 
 const config = require('config');
+const note = require('note-log');
 
 const irc = require('irc');
 const client = new irc.Client(config.irc.server, config.irc.nick, config.irc);
@@ -15,7 +16,7 @@ client.addListener('message', (from, to, message) => {
     const command = chunks[0];
     const args = chunks.slice(1);
 
-    console.log(`${to} <${from}> ${message}`);
+    note(`${to} <${from}> ${message}`);
 
     let method;
 
