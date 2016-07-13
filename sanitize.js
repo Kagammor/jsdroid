@@ -5,17 +5,17 @@ const note = require('note-log');
 const config = require('config');
 const request = require('request-promise');
 
+const paste = config.paste;
+
 module.exports = function(str) {
     let newStr = str.replace(/\n|\r/g, '');
 
     if(newStr.length > config.truncate) {
-        return request({
-            url: 'http://sprunge.us',
-            method: 'POST',
-            form: {
-                sprunge: str
-            }
-        }).then(res => {
+        Object.keys(paste.form).forEach(key => {
+            paste.form[key] = str;
+        });
+
+        return request(paste).then(res => {
             return `${newStr.slice(0, config.truncate - config.ellipsis.length - res.length)} ${config.ellipsis} ${res}`;
         }).catch(error => {
             note(error);

@@ -19,5 +19,12 @@ config.irc = {
 
 config.truncate = 400;
 config.ellipsis = '…';
+config.paste = {
+    url: 'http://sprunge.us',
+    method: 'POST',
+    form: {
+        sprunge: ''
+    }
+};
 
 module.exports = config;
