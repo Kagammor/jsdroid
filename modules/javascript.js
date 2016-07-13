@@ -37,7 +37,7 @@ module.exports = function(args, target, from) {
         });
 
         const options = {
-            Env: [`CODE=${code}`, `ME=${from}`],
+            Env: [`CODE=${code}`, `ME=${from}`, `TARGET=${target}`],
             NetworkDisabled: true,
             Memory: 134217728
         }
