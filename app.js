@@ -15,6 +15,8 @@ client.addListener('message', (from, to, message) => {
     const command = chunks[0];
     const args = chunks.slice(1);
 
+    console.log(`${to} <${from}> ${message}`);
+
     let method;
 
     if(command.match(new RegExp(`^\\${config.prefix}\\w+`))) {
@@ -26,9 +28,15 @@ client.addListener('message', (from, to, message) => {
     }
 
     router(method)(args, target, from, client).then(result => {
-        client.say(target, sanitize(result));
+        if(result) {
+            return sanitize(result).then(sanitizedResult => {
+                client.say(target, sanitizedResult);
+            });
+        }
     }).catch(error => {
-        client.say(target, sanitize(error));
+        return sanitize(error).then(sanitizedError => {
+            client.say(target, sanitizedError);
+        });
     });
 });
 

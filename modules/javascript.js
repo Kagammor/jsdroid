@@ -18,24 +18,6 @@ module.exports = function(args, target, from) {
             next();
         };
 
-        ws.on('finish', () => {
-            try {
-                const result = JSON.parse(results[0]);
-
-                if(result.type === 'undefined' && result.console.length) {
-                    resolve(`${from}: (console) ${result.console.join(', ')}`);
-                } else if(result.console.length) {
-                    resolve(`${from}: (${result.type}) ${result.value || result.error} | (console) ${result.console.join(', ')}`);
-                } else {
-                    resolve(`${from}: (${result.type}) ${result.value || result.error}`);
-                }
-            } catch(error) {
-                console.log(results[0]);
-
-                reject(`Evaluation error: ${error.message}`);
-            }
-        });
-
         const options = {
             Env: [`CODE=${code}`, `ME=${from}`, `TARGET=${target}`],
             NetworkDisabled: true,
@@ -52,6 +34,24 @@ module.exports = function(args, target, from) {
                     console.log(error);
                 }
             });
+        });
+
+        ws.on('finish', () => {
+            try {
+                const result = JSON.parse(results.join(''));
+
+                if(result.type === 'undefined' && result.console.length) {
+                    resolve(`${from}: (console) ${result.console.join(', ')}`);
+                } else if(result.console.length) {
+                    resolve(`${from}: (${result.type}) ${result.value || result.error} | (console) ${result.console.join(', ')}`);
+                } else {
+                    resolve(`${from}: (${result.type}) ${result.value || result.error}`);
+                }
+            } catch(error) {
+                console.log(results[0]);
+
+                reject(`Evaluation error: ${error.message}`);
+            }
         });
     });
 }
