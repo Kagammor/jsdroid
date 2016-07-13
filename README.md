@@ -1,4 +1,4 @@
-*jsdroid*
+#jsdroid#
 
 Code evaluation bot for IRC.
 
@@ -7,10 +7,12 @@ Code evaluation bot for IRC.
 * Output is sanitized and long results are pasted and linked
 * Currently supports JavaScript
 
-**Docker images**
+##Docker images##
+
 To learn about Docker, visit [https://docs.docker.com/](https://docs.docker.com/).
 
-***JavaScript***
+###JavaScript###
+
 JavaScript is evaluated using Node middleware that [sandboxes](https://github.com/patriksimek/vm2) the code to limit available methods. The middleware also summarizes the result to include e.g. the type of the return value. It makes available popular libraries like [lodash](https://lodash.com/), [Moment.js](http://momentjs.com/) and [Math.js](http://mathjs.org/). The Dockerfile and middleware is installed as a dependency and can be found in `node_modules/jsdroid-node/`, where it can be built with Docker as follows:
 
 `docker build -t jsdroid-node .`
