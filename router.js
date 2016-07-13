@@ -3,7 +3,8 @@
 const javascript = require('./modules/javascript.js');
 const ping = require('./modules/ping.js')
 const join = require('./modules/join.js');
-const part= require('./modules/part.js');
+const part = require('./modules/part.js');
+const info = require('./modules/info.js');
 
 const router = {};
 
@@ -14,6 +15,9 @@ router.ping = ping;
 
 router.join = join;
 router.part = part;
+
+router.info = ''; // Include self in info module
+router.info = info(Object.keys(router));
 
 module.exports = function(method) {
     if(router[method]) {

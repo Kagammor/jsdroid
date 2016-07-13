@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kagammor/jsdroid.git"
+    "url": "git+https://github.com/ThePendulum/jsdroid.git"
   },
   "keywords": [
     "code",
@@ -23,9 +23,9 @@
   "author": "Niels Simenon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kagammor/jsdroid/issues"
+    "url": "https://github.com/ThePendulum/jsdroid/issues"
   },
-  "homepage": "https://github.com/Kagammor/jsdroid#readme",
+  "homepage": "https://github.com/ThePendulum/jsdroid#readme",
   "dependencies": {
     "config": "^1.21.0",
     "dockerode": "^2.2.10",
