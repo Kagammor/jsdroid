@@ -30,4 +30,14 @@ config.paste = {
     }
 };
 
+config.db = {
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'SheLivedToBe#86',
+        database: 'jsdroid'
+    }
+};
+
 module.exports = config;
